@@ -14,20 +14,23 @@
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js}\"",
-    "lint-format": "pnpm run lint && pnpm run format"
+    "lint-format": "pnpm run lint && pnpm run format",
+    "db:generate": "drizzle-kit generate --config=./src/Database/Infrastructure/Neon/config.ts",
+    "db:push": "drizzle-kit push --config=./src/Database/Infrastructure/Neon/config.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.1",
-    "pg": "^8.20.0",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.20.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

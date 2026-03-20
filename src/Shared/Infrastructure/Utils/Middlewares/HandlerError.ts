@@ -1,4 +1,4 @@
-import { CustomError } from '@/src/Shared/Domain/Entities/CustomError';
+import { ClsCustomError } from '@/src/Shared/Domain/Entities/ClsCustomError';
 import { Request, Response, NextFunction } from 'express';
 
 export default function handlerError(
@@ -7,7 +7,7 @@ export default function handlerError(
   res: Response,
   next: NextFunction,
 ): void {
-  if (err instanceof CustomError) {
+  if (err instanceof ClsCustomError) {
     res.status(err.statusCode).json(err);
     next();
   }

@@ -1,11 +1,11 @@
-import { CustomError } from '../Entities/CustomError';
+import { ClsCustomError } from '../Entities/ClsCustomError';
 
 /**
  * Clase Not Found params
  * @property {string} message - Mensaje de Error
  * @property {unknown} details - Detalles adicionales sobre el error
  */
-export class NotFoundException extends CustomError {
+export class ClsNotFoundException extends ClsCustomError {
   public constructor(details?: Record<string, unknown>) {
     super({
       statusCode: 404,

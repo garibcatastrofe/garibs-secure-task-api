@@ -6,7 +6,7 @@
  * @property {string} name - Nombre del Error
  * @property {boolean} ok - Indica si la peticion fue exitosa
  */
-export class CustomError extends Error {
+export class ClsCustomError extends Error {
   public statusCode: number;
   public details?: ICustomErrorDetails;
   public ok = false;

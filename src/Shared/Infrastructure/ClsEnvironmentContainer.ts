@@ -1,4 +1,4 @@
-import { Environment } from '../Domain/Entities/Environment';
+import { IEnvironment } from '../Domain/Entities/IEnvironment';
 import { validateEnvironment } from './EnvironmentValidator';
 import dotenv from 'dotenv';
 
@@ -9,10 +9,10 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-export class EnvironmentContainer {
-  private static instance: Environment;
+export class ClsEnvironmentContainer {
+  private static instance: IEnvironment;
 
-  public static getInstance(): Environment {
+  public static getInstance(): IEnvironment {
     if (!this.instance) {
       const envValues = {
         NODE_ENV: process.env.NODE_ENV,
@@ -32,4 +32,4 @@ export class EnvironmentContainer {
   }
 }
 
-export const env = EnvironmentContainer.getInstance();
+export const env = ClsEnvironmentContainer.getInstance();

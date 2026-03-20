@@ -1,7 +1,7 @@
 import { app } from './app';
-import { EnvironmentContainer } from './Shared/Infrastructure/EnvironmentContainer';
+import { ClsEnvironmentContainer } from './Shared/Infrastructure/ClsEnvironmentContainer';
 
-const env = EnvironmentContainer.getInstance();
+const env = ClsEnvironmentContainer.getInstance();
 app.listen(env.PORT, () => {
   console.warn(`Server listen on http://localhost:${env.PORT}`);
 });

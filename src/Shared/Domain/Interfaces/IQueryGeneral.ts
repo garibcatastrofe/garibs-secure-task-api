@@ -1,8 +1,8 @@
-export type OperadorComparacion = '=' | '!=' | '<' | '<=' | '>' | '>=';
+export type Operator = '=' | '!=' | '<' | '<=' | '>' | '>=';
 
-export interface Filtro<T> {
+export interface IFiltro<T> {
   campo: keyof T;
-  operador: OperadorComparacion;
+  operador: Operator;
   valor: string | number;
 }
 
@@ -11,5 +11,5 @@ export interface IQueryGeneral<T> {
   perPage: number;
   order: 'asc' | 'desc';
   orderBy: keyof T;
-  filters: Filtro<T>[];
+  filters: IFiltro<T>[];
 }

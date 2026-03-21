@@ -12,12 +12,14 @@ export class ClsUserIsAdmin {
   private ensureIsValid(value: string): void {
     if (!value) {
       throw new ClsBadRequest({
+        ok: true,
         message: 'Favor de Seleccionar un estatus',
       });
     }
     if (!IS_ADMIN.includes(value as IsAdminType)) {
       throw new ClsBadRequest({
         message: 'Favor de seleccionar un valor válido de estatus: ACTIVO o INACTIVO',
+        ok: false,
       });
     }
   }

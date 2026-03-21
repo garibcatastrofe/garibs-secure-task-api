@@ -1,15 +1,19 @@
-export type Operator = '=' | '!=' | '<' | '<=' | '>' | '>=';
+type NumberOperators = '=' | '!=' | '<' | '<=' | '>' | '>=';
+type StringOperators = '=' | 'LIKE';
 
-export interface IFiltro<T> {
-  campo: keyof T;
-  operador: Operator;
-  valor: string | number;
-}
+export type FilterNumberObject = {
+  value: number;
+  operator: NumberOperators;
+};
+export type FilterStringObject = {
+  value: string;
+  operator: StringOperators;
+};
 
-export interface IQueryGeneral<T> {
+export interface IQueryGeneral<PrimitiveType, ObjectFilterType> {
   page: number;
   perPage: number;
   order: 'asc' | 'desc';
-  orderBy: keyof T;
-  filters: IFiltro<T>[];
+  orderBy: keyof PrimitiveType;
+  filtersObject?: ObjectFilterType;
 }

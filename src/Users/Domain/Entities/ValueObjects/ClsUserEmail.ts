@@ -9,12 +9,12 @@ export class ClsUserEmail {
   }
 
   private ensureIsValid(value: string): void {
-    if (!value) throw new ClsBadRequest({ message: 'El correo es necesario' });
+    if (!value) throw new ClsBadRequest({ message: 'El correo es necesario', ok: false });
 
     if (value.length < 5)
-      throw new ClsBadRequest({ message: 'El correo debe ser mayor de 5 caracteres' });
+      throw new ClsBadRequest({ message: 'El correo debe ser mayor de 5 caracteres', ok: false });
 
     if (value.length > 50)
-      throw new ClsBadRequest({ message: 'El correo debe ser menor a 50 caracteres' });
+      throw new ClsBadRequest({ message: 'El correo debe ser menor a 50 caracteres', ok: false });
   }
 }

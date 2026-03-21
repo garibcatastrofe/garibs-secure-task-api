@@ -9,4 +9,5 @@ export interface IEnvironment {
   NODE_ENV: NodeEnv;
   PORT: number;
   DATABASE_URL: string;
+  BCRYPT_SALT_ROUNDS: string;
 }

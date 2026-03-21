@@ -6,12 +6,21 @@ import { ClsCustomError } from '../Entities/ClsCustomError';
  * @property {unknown} details - Detalles adicionales sobre el error
  */
 export class ClsBadRequest extends ClsCustomError {
-  public constructor(details?: Record<string, unknown>, message?: string) {
+  public constructor({
+    ok,
+    message,
+    details,
+  }: {
+    ok: boolean;
+    message: string;
+    details?: Record<string, unknown>;
+  }) {
     super({
       statusCode: 400,
       message: message || 'Bad Request',
-      details: details,
+      details,
       name: 'BadRequest',
+      ok: ok || false,
     });
   }
 }

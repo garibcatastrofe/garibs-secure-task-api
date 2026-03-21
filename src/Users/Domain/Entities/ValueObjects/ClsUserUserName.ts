@@ -9,12 +9,19 @@ export class ClsUserUserName {
   }
 
   private ensureIsValid(value: string): void {
-    if (!value) throw new ClsBadRequest({ message: 'El nombre de usuario es necesario' });
+    if (!value)
+      throw new ClsBadRequest({ message: 'El nombre de usuario es necesario', ok: false });
 
     if (value.length < 5)
-      throw new ClsBadRequest({ message: 'El nombre de usuario debe ser mayor de 5 caracteres' });
+      throw new ClsBadRequest({
+        message: 'El nombre de usuario debe ser mayor de 5 caracteres',
+        ok: false,
+      });
 
     if (value.length > 50)
-      throw new ClsBadRequest({ message: 'El nombre de usuario debe ser menor a 50 caracteres' });
+      throw new ClsBadRequest({
+        message: 'El nombre de usuario debe ser menor a 50 caracteres',
+        ok: false,
+      });
   }
 }

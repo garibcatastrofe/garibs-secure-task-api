@@ -5,6 +5,7 @@ const environmentSchema = z.object({
   NODE_ENV: z.enum([ENUM_NODE_ENV.development, ENUM_NODE_ENV.production]),
   PORT: z.number().int().positive(),
   DATABASE_URL: z.string(),
+  BCRYPT_SALT_ROUNDS: z.string(),
 });
 
 export function validateEnvironment(env: unknown): IEnvironment {

@@ -9,19 +9,26 @@ export class ClsUserPassword {
   }
 
   private ensureIsValid(value: string): void {
-    if (!value) throw new ClsBadRequest({ message: 'La contraseña es necesaria' });
+    if (!value) throw new ClsBadRequest({ message: 'La contraseña es necesaria', ok: false });
 
     if (value.length < 8)
-      throw new ClsBadRequest({ message: 'La contraseña debe ser mayor de 8 caracteres' });
+      throw new ClsBadRequest({
+        message: 'La contraseña debe ser mayor de 8 caracteres',
+        ok: false,
+      });
 
     if (value.length > 50)
-      throw new ClsBadRequest({ message: 'La contraseña debe ser menor a 50 caracteres' });
+      throw new ClsBadRequest({
+        message: 'La contraseña debe ser menor a 50 caracteres',
+        ok: false,
+      });
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     if (!passwordRegex.test(value)) {
       throw new ClsBadRequest({
         message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un número',
+        ok: false,
       });
     }
   }

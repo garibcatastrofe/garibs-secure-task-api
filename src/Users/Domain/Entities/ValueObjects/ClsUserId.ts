@@ -12,11 +12,13 @@ export class ClsUserId {
     if (!value)
       throw new ClsBadRequest({
         message: 'El ID del usuario es necesario',
+        ok: false,
       });
 
     if (isNaN(value)) {
       throw new ClsBadRequest({
         message: 'El ID del usuario debe de ser un número',
+        ok: false,
       });
     }
   }

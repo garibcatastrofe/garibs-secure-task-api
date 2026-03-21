@@ -15,16 +15,19 @@ export class ClsCustomError extends Error {
     message,
     details,
     name,
+    ok,
   }: {
     statusCode: number;
     message: string;
     details?: ICustomErrorDetails;
     name: string;
+    ok: boolean;
   }) {
     super(message);
     this.statusCode = statusCode;
     this.details = details;
     this.name = name;
+    this.ok = ok;
   }
 }
 

@@ -10,6 +10,7 @@ export class ClsCustomError extends Error {
   public statusCode: number;
   public details?: ICustomErrorDetails;
   public ok = false;
+  public message: string;
   public constructor({
     statusCode,
     message,
@@ -24,6 +25,7 @@ export class ClsCustomError extends Error {
     ok: boolean;
   }) {
     super(message);
+    this.message = message;
     this.statusCode = statusCode;
     this.details = details;
     this.name = name;

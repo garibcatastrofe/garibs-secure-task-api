@@ -17,7 +17,7 @@ export class ClsBadRequest extends ClsCustomError {
   }) {
     super({
       statusCode: 400,
-      message: message || 'Bad Request',
+      message: message || 'Ocurrió un error interno, intente nuevamente más tarde',
       details,
       name: 'BadRequest',
       ok: ok || false,

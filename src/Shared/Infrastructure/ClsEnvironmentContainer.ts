@@ -2,8 +2,6 @@ import { IEnvironment } from '../Domain/Entities/IEnvironment';
 import { validateEnvironment } from './EnvironmentValidator';
 import dotenv from 'dotenv';
 
-/* process.loadEnvFile(); */
-
 // Carga .env solo en desarrollo, pero de forma SINCRÓNICA
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();

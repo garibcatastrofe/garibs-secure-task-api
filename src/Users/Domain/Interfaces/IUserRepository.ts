@@ -11,5 +11,6 @@ export interface IUserRepository {
   selectUserByIdAsync(id: number): Promise<Omit<IUserPrimitive, 'password'>>;
   updateUserAsync(id: number, user: Partial<IUserPrimitive>): Promise<void>;
   deleteUserAsync(id: number): Promise<void>;
-  selectUserSignInAsync(correo: string): Promise<IUserPrimitive | null>;
+  selectUserByEmailAsync(correo: string): Promise<IUserPrimitive | null>;
+  selectUserByUserNameAsync(username: string): Promise<IUserPrimitive | null>;
 }

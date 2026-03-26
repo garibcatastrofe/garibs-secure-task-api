@@ -127,7 +127,7 @@ export class ClsUserNeonRepository implements IUserRepository {
       .limit(perPage)
       .offset(page * perPage);
 
-    const usersCount = await db.select({ count: count() }).from(users);
+    const usersCount = await db.select({ count: count() }).from(users).where(whereStatement);
 
     return {
       data: rows,
@@ -177,8 +177,13 @@ export class ClsUserNeonRepository implements IUserRepository {
     await db.delete(users).where(eq(users.id, id));
   }
 
-  public async selectUserSignInAsync(email: string): Promise<IUserPrimitive | null> {
+  public async selectUserByEmailAsync(email: string): Promise<IUserPrimitive | null> {
     const usersFound = await db.select().from(users).where(eq(users.email, email));
+    return usersFound[0] ?? null;
+  }
+
+  public async selectUserByUserNameAsync(username: string): Promise<IUserPrimitive | null> {
+    const usersFound = await db.select().from(users).where(eq(users.user_name, username));
     return usersFound[0] ?? null;
   }
 }

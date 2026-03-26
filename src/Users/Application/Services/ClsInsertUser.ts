@@ -27,41 +27,23 @@ export class ClsInsertUser {
     const userNameVerified = new ClsUserUserName(user_name);
 
     // Buscar usuarios por el correoVerificado
-    const usersRepeatedEmail = await this.userRepository.selectUsersAsync({
-      page: 0,
-      perPage: 1,
-      order: 'asc',
-      orderBy: 'id',
-      filtersObject: {
-        filterByEmail: {
-          operator: '=',
-          value: emailVerified.value,
-        },
-      },
-    });
+    const usersRepeatedEmail = await this.userRepository.selectUserByEmailAsync(
+      emailVerified.value,
+    );
 
     // Si existe un usuario con ese correo, lanzar un error
-    if (usersRepeatedEmail.data.length > 0) {
+    if (usersRepeatedEmail) {
       throw new ClsBadRequest({
         message: 'Ya existe un usuario con ese correo',
         ok: false,
       });
     }
 
-    const usersRepeatedUserName = await this.userRepository.selectUsersAsync({
-      page: 0,
-      perPage: 1,
-      order: 'asc',
-      orderBy: 'id',
-      filtersObject: {
-        filterByUserName: {
-          operator: '=',
-          value: userNameVerified.value,
-        },
-      },
-    });
+    const usersRepeatedUserName = await this.userRepository.selectUserByUserNameAsync(
+      userNameVerified.value,
+    );
 
-    if (usersRepeatedUserName.data.length > 0) {
+    if (usersRepeatedUserName) {
       throw new ClsBadRequest({
         message: 'Ya existe un usuario con ese nombre',
         ok: false,

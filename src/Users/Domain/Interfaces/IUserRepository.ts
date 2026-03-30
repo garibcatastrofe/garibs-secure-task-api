@@ -8,7 +8,7 @@ export interface IUserRepository {
   selectUsersAsync(
     query: IQueryGeneral<Omit<IUserPrimitive, 'password'>, ObjectUserFilterType>,
   ): Promise<IPaginatedResponse<Omit<IUserPrimitive, 'password'>>>;
-  selectUserByIdAsync(id: number): Promise<Omit<IUserPrimitive, 'password'>>;
+  selectUserByIdAsync(id: number): Promise<Omit<IUserPrimitive, 'password'> | null>;
   updateUserAsync(id: number, user: Partial<IUserPrimitive>): Promise<void>;
   deleteUserAsync(id: number): Promise<void>;
   selectUserByEmailAsync(correo: string): Promise<IUserPrimitive | null>;

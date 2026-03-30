@@ -135,7 +135,7 @@ export class ClsUserNeonRepository implements IUserRepository {
     };
   }
 
-  public async selectUserByIdAsync(id: number): Promise<Omit<IUserPrimitive, 'password'>> {
+  public async selectUserByIdAsync(id: number): Promise<Omit<IUserPrimitive, 'password'> | null> {
     const userFound = await db
       .select({
         usuario: {
@@ -148,7 +148,9 @@ export class ClsUserNeonRepository implements IUserRepository {
       .from(users)
       .where(eq(users.id, id));
 
-    return userFound[0].usuario ?? null;
+    if (userFound.length === 0) return null;
+
+    return userFound[0].usuario;
   }
 
   public async updateUserAsync(id: number, user: Partial<IUserPrimitive>): Promise<void> {

@@ -6,7 +6,7 @@ export const tasks = pgTable('tasks', {
   title: text('title').notNull(),
   description: text('description').notNull(),
   creation_date: timestamp('creation_date', { withTimezone: true }).defaultNow().notNull(),
-  expiration_date: timestamp('expiration_date', { withTimezone: true }).notNull(),
+  expiration_date: timestamp('expiration_date', { withTimezone: true }),
   state: text('state').notNull(),
   user_id: integer('user_id').references(() => users.id, { onDelete: 'cascade' }).notNull(),
 });

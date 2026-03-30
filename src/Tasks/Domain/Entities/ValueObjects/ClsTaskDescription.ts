@@ -1,7 +1,6 @@
 import { ClsBadRequest } from '@/src/Shared/Domain/Exceptions/ClsBadRequest';
-import { IS_ADMIN, IsAdminType } from '../../Interfaces/IsAdmin';
 
-export class ClsUserIsAdmin {
+export class ClsTaskDescription {
   public value: string;
 
   public constructor(value: string) {
@@ -10,17 +9,18 @@ export class ClsUserIsAdmin {
   }
 
   private ensureIsValid(value: string): void {
-    if (!value) {
+    if (!value) throw new ClsBadRequest({ message: 'La descripción es necesaria', ok: false });
+
+    if (value.length < 5)
       throw new ClsBadRequest({
-        ok: true,
-        message: 'Favor de seleccionar un valor para is_admin',
-      });
-    }
-    if (!IS_ADMIN.includes(value as IsAdminType)) {
-      throw new ClsBadRequest({
-        message: 'Favor de seleccionar un valor válido de is_admin: SI o NO',
+        message: 'La descripción debe ser mayor de 5 caracteres',
         ok: false,
       });
-    }
+
+    if (value.length > 50)
+      throw new ClsBadRequest({
+        message: 'La descripción debe ser menor a 50 caracteres',
+        ok: false,
+      });
   }
 }

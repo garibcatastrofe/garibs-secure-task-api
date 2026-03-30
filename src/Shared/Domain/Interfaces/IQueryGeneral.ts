@@ -10,6 +10,11 @@ export type FilterStringObject = {
   operator: StringOperators;
 };
 
+export type FilterDateIntervalObject = {
+  date_start: string;
+  date_end: string;
+};
+
 export interface IQueryGeneral<PrimitiveType, ObjectFilterType> {
   page: number;
   perPage: number;

@@ -1,7 +1,7 @@
 import { ClsBadRequest } from '@/src/Shared/Domain/Exceptions/ClsBadRequest';
-import { IS_ADMIN, IsAdminType } from '../../Interfaces/IsAdmin';
+import { STATE, StatusType } from '../../Interfaces/State';
 
-export class ClsUserIsAdmin {
+export class ClsTaskState {
   public value: string;
 
   public constructor(value: string) {
@@ -13,12 +13,13 @@ export class ClsUserIsAdmin {
     if (!value) {
       throw new ClsBadRequest({
         ok: true,
-        message: 'Favor de seleccionar un valor para is_admin',
+        message: 'Favor de seleccionar un estado',
       });
     }
-    if (!IS_ADMIN.includes(value as IsAdminType)) {
+    if (!STATE.includes(value as StatusType)) {
       throw new ClsBadRequest({
-        message: 'Favor de seleccionar un valor válido de is_admin: SI o NO',
+        message:
+          'Favor de seleccionar un valor válido de estado: COMPLETADA, NO COMPLETADA, EN PROCESO o CANCELADA',
         ok: false,
       });
     }

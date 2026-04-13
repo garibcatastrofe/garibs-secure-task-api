@@ -65,7 +65,7 @@ export class ClsTaskController {
 
       res
         .status(200)
-        .json({ message: 'Los datos del usuario fueron actualizados exitosamente', ok: true });
+        .json({ message: 'Los datos de la tarea fueron actualizados exitosamente', ok: true });
     } catch (error) {
       next(error);
     }

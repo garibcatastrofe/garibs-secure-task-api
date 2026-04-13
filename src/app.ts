@@ -6,6 +6,7 @@ import handlerError from './Shared/Infrastructure/Utils/Middlewares/HandlerError
 
 // Routers
 import { UserRouter } from './Users/Infrastructure/Router';
+import { TaskRouter } from './Tasks/Infrastructure/Router';
 
 // CONSTS
 const PREFIX = '/api/v1';
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 // Routes
 app.use(PREFIX, UserRouter);
+app.use(PREFIX, TaskRouter);
 
 app.all('*', (req, res, next) => {
   res.status(404).json({ message: 'Not found' });

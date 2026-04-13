@@ -20,7 +20,7 @@ export class ClsInsertTask {
     private readonly userRepository: IUserRepository,
   ) {}
 
-  public async insertUserAsync({
+  public async insertTaskAsync({
     title,
     description,
     creation_date,
@@ -33,7 +33,7 @@ export class ClsInsertTask {
 
     if (!userFound) {
       throw new ClsNotFoundException({
-        message: `El usuario con el id ${user_id} no fue encontrado`,
+        message: `El usuario con el id ${user_id} con el que desea ingresar la tarea no fue encontrado`,
         ok: false,
       });
     }

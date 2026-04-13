@@ -8,7 +8,7 @@ export interface ITaskRepository {
   selectTasksAsync(
     query: IQueryGeneral<ITaskPrimitive, ObjectTaskFilterType>,
   ): Promise<IPaginatedResponse<ITaskPrimitive>>;
-  selectTaskByIdAsync(id: number): Promise<ITaskPrimitive>;
+  selectTaskByIdAsync(id: number): Promise<ITaskPrimitive | null>;
   updateTaskAsync(id: number, user: Partial<ITaskPrimitive>): Promise<void>;
   deleteTaskAsync(id: number): Promise<void>;
 }

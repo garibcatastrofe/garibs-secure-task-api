@@ -2,6 +2,7 @@ import {
   FilterDateIntervalObject,
   FilterNumberObject,
   FilterStringObject,
+  FilterDateObject
 } from '@/src/Shared/Domain/Interfaces/IQueryGeneral';
 
 export type ObjectTaskFilterType = {
@@ -10,8 +11,8 @@ export type ObjectTaskFilterType = {
   filterByDescription?: FilterStringObject;
   filterByState?: FilterStringObject;
   filterByUserId?: FilterNumberObject;
-  filterByCreationDate?: FilterStringObject;
-  filterByExpirationDate?: FilterStringObject;
+  filterByCreationDate?: FilterDateObject;
+  filterByExpirationDate?: FilterDateObject;
   filterByCreationDateInterval?: FilterDateIntervalObject;
   filterByExpirationDateInterval?: FilterDateIntervalObject;
 };

@@ -5,7 +5,7 @@ import { ClsNotFoundException } from '@/src/Shared/Domain/Exceptions/ClsNotFound
 export class ClsDeleteTask {
   public constructor(private readonly taskRepository: ITaskRepository) {}
 
-  public async deleteUserAsync(id: number): Promise<void> {
+  public async deleteTaskAsync(id: number): Promise<void> {
     const id_task = new ClsTaskId(id);
 
     // Buscar la tarea

@@ -5,14 +5,20 @@ export type FilterNumberObject = {
   value: number;
   operator: NumberOperators;
 };
+
 export type FilterStringObject = {
   value: string;
   operator: StringOperators;
 };
 
+export type FilterDateObject = {
+  value: Date;
+  operator: NumberOperators;
+};
+
 export type FilterDateIntervalObject = {
-  date_start: string;
-  date_end: string;
+  date_start: Date;
+  date_end: Date;
 };
 
 export interface IQueryGeneral<PrimitiveType, ObjectFilterType> {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "pnpm run validate-typescript && pnpm run build:clean && pnpm run generate-dist",
+    "build": "npm run validate-typescript && npm run build:clean && npm run generate-dist",
     "start": "node dist/index.js",
     "dev": "nodemon",
     "build:clean": "rimraf dist; exit 0",
@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js}\"",
-    "lint-format": "pnpm run lint && pnpm run format",
+    "lint-format": "npm run lint && npm run format",
     "db:generate": "drizzle-kit generate --config=./src/Database/Infrastructure/Neon/config.ts",
     "db:push": "drizzle-kit push --config=./src/Database/Infrastructure/Neon/config.ts"
   },

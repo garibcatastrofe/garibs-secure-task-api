@@ -160,7 +160,7 @@ export class ClsUserController {
       res.clearCookie('accessToken', {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
+        sameSite: 'none',
       });
 
       res.status(200).json({ message: 'La sesión fue cerrada correctamente', ok: true });

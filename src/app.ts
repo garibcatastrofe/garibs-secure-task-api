@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Tu frontend
+    origin: 'https://secure-task-app.garibcatastrofe.com/', // Tu frontend
     credentials: true, // Permitir envío de cookies
   }),
 );

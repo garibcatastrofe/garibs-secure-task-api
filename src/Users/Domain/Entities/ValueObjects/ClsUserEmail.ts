@@ -16,5 +16,8 @@ export class ClsUserEmail {
 
     if (value.length > 50)
       throw new ClsBadRequest({ message: 'El correo debe ser menor a 50 caracteres', ok: false });
+
+    if (!value.includes('@'))
+      throw new ClsBadRequest({ message: 'El correo debe contener @', ok: false });
   }
 }

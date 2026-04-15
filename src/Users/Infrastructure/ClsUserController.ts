@@ -94,7 +94,7 @@ export class ClsUserController {
 
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: /* process.env.NODE_ENV === 'production' */ false,
         sameSite: 'none',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días en ms
       });
@@ -117,12 +117,10 @@ export class ClsUserController {
 
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: /* process.env.NODE_ENV === 'production' */ false,
         sameSite: 'none',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días en ms
       });
-
-      console.warn("Pasó el SignIn")
 
       res.status(200).json({ message: 'La sesión fue iniciada correctamente', ok: true });
     } catch (error) {
@@ -133,8 +131,6 @@ export class ClsUserController {
   public async verifyAsync(req: Request, res: Response): Promise<void> {
     try {
       const token = req.cookies.accessToken;
-
-      console.warn("Entró al verify")
 
       if (!token) {
         res.status(401).json({ message: 'No tiene sesión iniciada, acceso denegado', ok: false });
@@ -159,7 +155,7 @@ export class ClsUserController {
     try {
       res.clearCookie('accessToken', {
         httpOnly: true,
-        secure: true,
+        secure: false,
         sameSite: 'none',
       });
 

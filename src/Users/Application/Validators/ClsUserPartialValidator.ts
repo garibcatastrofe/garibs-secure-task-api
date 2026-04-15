@@ -22,7 +22,7 @@ export class ClsUserPartialValidator {
       validatedUser.email = new ClsUserEmail(user.email).value;
     }
 
-    if (user?.password !== undefined) {
+    if (user?.password !== undefined && user?.password !== '') {
       validatedUser.password = new ClsUserPassword(user.password).value;
 
       const saltRounds = Number(env.BCRYPT_SALT_ROUNDS) || 10;

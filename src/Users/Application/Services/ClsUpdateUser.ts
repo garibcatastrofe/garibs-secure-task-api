@@ -31,7 +31,7 @@ export class ClsUpdateUser {
     }
 
     if (user !== undefined) {
-      if (user.password !== undefined) {
+      if (user.password !== undefined && user.password !== "") {
         if (user.password_confirm === undefined) {
           throw new ClsBadRequest({
             message: 'Debe proporcionar la contraseña verificada',

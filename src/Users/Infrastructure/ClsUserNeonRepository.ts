@@ -169,7 +169,7 @@ export class ClsUserNeonRepository implements IUserRepository {
     }
 
     if (Object.keys(updateData).length === 0) {
-      return; // nada que actualizar
+      return;
     }
 
     await db.update(users).set(updateData).where(eq(users.id, id));

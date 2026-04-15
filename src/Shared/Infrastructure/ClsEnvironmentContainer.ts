@@ -17,6 +17,7 @@ export class ClsEnvironmentContainer {
         PORT: Number(process.env.PORT),
         DATABASE_URL: process.env.DATABASE_URL,
         BCRYPT_SALT_ROUNDS: process.env.BCRYPT_SALT_ROUNDS,
+        AUTH_KEY: process.env.AUTH_KEY,
       };
 
       try {

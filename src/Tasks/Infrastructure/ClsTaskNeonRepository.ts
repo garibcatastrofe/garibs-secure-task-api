@@ -270,7 +270,7 @@ export class ClsTaskNeonRepository implements ITaskRepository {
     }
 
     if (Object.keys(updateData).length === 0) {
-      return; // nada que actualizar
+      return;
     }
 
     await db.update(tasks).set(updateData).where(eq(tasks.id, id));

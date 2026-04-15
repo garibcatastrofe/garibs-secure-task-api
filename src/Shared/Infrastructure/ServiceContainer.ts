@@ -4,6 +4,7 @@ import { ClsDeleteUser } from '@/src/Users/Application/Services/ClsDeleteUser';
 import { ClsSelectUserById } from '@/src/Users/Application/Services/ClsSelectUserById';
 import { ClsSelectUsers } from '@/src/Users/Application/Services/ClsSelectUsers';
 import { ClsUpdateUser } from '@/src/Users/Application/Services/ClsUpdateUser';
+import { ClsSignInUser } from '@/src/Users/Application/Services/ClsSignInUser';
 import { ClsUserNeonRepository } from '@/src/Users/Infrastructure/ClsUserNeonRepository';
 
 /* TASKS */
@@ -26,6 +27,7 @@ export const ServiceContainer = {
     select: new ClsSelectUsers(UserRepository),
     selectById: new ClsSelectUserById(UserRepository),
     update: new ClsUpdateUser(UserRepository),
+    signIn: new ClsSignInUser(UserRepository),
   },
 
   Tasks: {

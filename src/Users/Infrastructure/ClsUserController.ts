@@ -3,6 +3,8 @@ import { ServiceContainer } from '@/src/Shared/Infrastructure/ServiceContainer';
 import { NextFunction, Request, Response } from 'express';
 import { IUserPrimitive } from '../Domain/Interfaces/IUserPrimitive';
 import { ObjectUserFilterType } from '../Domain/Interfaces/ObjectUserFilterType';
+import jwt from 'jsonwebtoken';
+import { env } from '@/src/Shared/Infrastructure/ClsEnvironmentContainer';
 
 const { Users } = ServiceContainer;
 
@@ -80,6 +82,63 @@ export class ClsUserController {
       res.status(200).json({ message: 'El usuario fue eliminado exitosamente', ok: true });
     } catch (error) {
       next(error);
+    }
+  }
+
+  public async signInAsync(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { email, password } = req.body;
+
+      const userFound = await Users.signIn.signInUserAsync(email, password);
+      const accessToken = jwt.sign({ id: userFound.id }, env.AUTH_KEY, { expiresIn: '7d' });
+
+      res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días en ms
+      });
+
+      res.status(200).json({ message: 'La sesión fue iniciada correctamente', ok: true });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async verifyAsync(req: Request, res: Response): Promise<void> {
+    try {
+      const token = req.cookies.accessToken;
+
+      if (!token) {
+        res.status(401).json({ message: 'No tiene sesión iniciada, acceso denegado', ok: false });
+        return;
+      }
+
+      const decoded = jwt.verify(token, env.AUTH_KEY);
+      
+      res.status(200).json({
+        message: 'La sesión fue verificada correctamente',
+        ok: true,
+        token: decoded,
+      });
+    } catch {
+      res
+        .status(403)
+        .json({ message: 'El token de sesión es inválido, acceso denegado', ok: false });
+    }
+  }
+
+  public async signOutAsync(req: Request, res: Response): Promise<void> {
+    try {
+      res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      });
+
+      res.status(200).json({ message: 'La sesión fue cerrada correctamente', ok: true });
+    } catch {
+      res.status(403).json({ message: 'La sesión no fue cerrada correctamente', ok: false });
     }
   }
 }

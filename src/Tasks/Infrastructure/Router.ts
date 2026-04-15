@@ -5,7 +5,7 @@ const controller = new ClsTaskController();
 const router = Router();
 
 router.post('/task', controller.insertTaskAsync);
-router.get('/tasks/', controller.selectTasksAsync);
+router.post('/tasks/', controller.selectTasksAsync);
 router.get('/task/:id', controller.selectTaskByIdAsync);
 router.put('/task/:id', controller.updateTaskAsync);
 router.delete('/task/:id', controller.deleteTaskAsync);

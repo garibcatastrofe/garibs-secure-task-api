@@ -6,6 +6,7 @@ const environmentSchema = z.object({
   PORT: z.number().int().positive(),
   DATABASE_URL: z.string(),
   BCRYPT_SALT_ROUNDS: z.string(),
+  AUTH_KEY: z.string(),
 });
 
 export function validateEnvironment(env: unknown): IEnvironment {

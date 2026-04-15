@@ -17,9 +17,9 @@ export class ClsTaskDescription {
         ok: false,
       });
 
-    if (value.length > 50)
+    if (value.length > 750)
       throw new ClsBadRequest({
-        message: 'La descripción debe ser menor a 50 caracteres',
+        message: 'La descripción debe ser menor a 750 caracteres',
         ok: false,
       });
   }

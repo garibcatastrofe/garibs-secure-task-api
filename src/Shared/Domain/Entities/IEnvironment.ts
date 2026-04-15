@@ -10,4 +10,5 @@ export interface IEnvironment {
   PORT: number;
   DATABASE_URL: string;
   BCRYPT_SALT_ROUNDS: string;
+  AUTH_KEY: string
 }

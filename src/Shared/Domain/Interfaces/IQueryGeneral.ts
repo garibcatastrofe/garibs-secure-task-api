@@ -12,13 +12,13 @@ export type FilterStringObject = {
 };
 
 export type FilterDateObject = {
-  value: Date;
+  value: string;
   operator: NumberOperators;
 };
 
 export type FilterDateIntervalObject = {
-  date_start: Date;
-  date_end: Date;
+  date_start: string;
+  date_end: string;
 };
 
 export interface IQueryGeneral<PrimitiveType, ObjectFilterType> {

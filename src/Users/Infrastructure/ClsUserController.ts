@@ -85,6 +85,29 @@ export class ClsUserController {
     }
   }
 
+  public async signUpUserAsync(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const body = req.body;
+
+      const userId = await Users.signUp.signUpUserAsync(body);
+      const accessToken = jwt.sign({ id: userId }, env.AUTH_KEY, { expiresIn: '7d' });
+
+      res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días en ms
+      });
+
+      res.status(200).json({
+        message: 'Su usuario fue creado y la sesión fue iniciada correctamente',
+        ok: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   public async signInAsync(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { email, password } = req.body;
@@ -115,7 +138,7 @@ export class ClsUserController {
       }
 
       const decoded = jwt.verify(token, env.AUTH_KEY);
-      
+
       res.status(200).json({
         message: 'La sesión fue verificada correctamente',
         ok: true,

@@ -11,6 +11,7 @@ router.put('/user/:id', controller.updateUserAsync);
 router.delete('/user/:id', controller.deleteUserAsync);
 
 router.post('/signIn', controller.signInAsync);
+router.post('/signUp', controller.signUpUserAsync);
 router.get('/verify', controller.verifyAsync);
 router.post('/signOut', controller.signOutAsync);
 

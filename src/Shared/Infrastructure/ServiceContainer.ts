@@ -5,6 +5,7 @@ import { ClsSelectUserById } from '@/src/Users/Application/Services/ClsSelectUse
 import { ClsSelectUsers } from '@/src/Users/Application/Services/ClsSelectUsers';
 import { ClsUpdateUser } from '@/src/Users/Application/Services/ClsUpdateUser';
 import { ClsSignInUser } from '@/src/Users/Application/Services/ClsSignInUser';
+import { ClsSignUpUser } from '@/src/Users/Application/Services/ClsSignUpUser';
 import { ClsUserNeonRepository } from '@/src/Users/Infrastructure/ClsUserNeonRepository';
 
 /* TASKS */
@@ -28,6 +29,7 @@ export const ServiceContainer = {
     selectById: new ClsSelectUserById(UserRepository),
     update: new ClsUpdateUser(UserRepository),
     signIn: new ClsSignInUser(UserRepository),
+    signUp: new ClsSignUpUser(UserRepository),
   },
 
   Tasks: {

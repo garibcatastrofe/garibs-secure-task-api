@@ -201,6 +201,38 @@ export class ClsTaskNeonRepository implements ITaskRepository {
             break;
         }
       }
+
+      if (
+        filtersObject.filterByUserId &&
+        filtersObject.filterByUserId.operator &&
+        filtersObject.filterByUserId.value
+      ) {
+        switch (filtersObject.filterByUserId.operator) {
+          case '=':
+            conditions.push(eq(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+
+          case '<':
+            conditions.push(lt(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+
+          case '>':
+            conditions.push(gt(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+
+          case '<=':
+            conditions.push(lte(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+
+          case '>=':
+            conditions.push(gte(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+
+          case '!=':
+            conditions.push(ne(tasks.user_id, filtersObject.filterByUserId.value));
+            break;
+        }
+      }
     }
 
     const whereStatement = and(...conditions);
